@@ -2,8 +2,8 @@ image: google/cloud-sdk:latest
 
 variables:
   PROJECT_ID: "gkewithgitlabs"
-  CLUSTER_NAME: "nodejs-cluster"
-  CLUSTER_ZONE: "us-central1-a"
+  CLUSTER_NAME: "gitlab-cluster"
+  CLUSTER_ZONE: "us-central1"     # Note: region, not zone
   IMAGE: "gcr.io/$PROJECT_ID/nodejs-gke-app"
 
 stages:
@@ -14,8 +14,7 @@ before_script:
   - echo "$GCP_SERVICE_KEY" > key.json
   - gcloud auth activate-service-account --key-file=key.json
   - gcloud config set project $PROJECT_ID
-  - gcloud config set compute/zone $CLUSTER_ZONE
-  - gcloud container clusters get-credentials $CLUSTER_NAME
+  - gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_ZONE
 
 build:
   stage: build
