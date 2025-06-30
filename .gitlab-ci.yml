@@ -1,6 +1,10 @@
 variables:
+  PROJECT_ID: "gkewithgitlabs"
+  CLUSTER_NAME: "gitlab-cluster"
+  CLUSTER_ZONE: "us-central1"
   DOCKER_HOST: tcp://docker:2375/
   DOCKER_TLS_CERTDIR: ""
+  IMAGE: "gcr.io/gkewithgitlabs/nodejs-gke-app"
 
 stages:
   - build
